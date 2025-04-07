@@ -35,7 +35,7 @@ conda activate django_env
 
 ---
 
-### 📆 Step 3: Install Python Dependencies
+### Step 3: Install Python Dependencies
 
 Run the following inside your `django_env` environment:
 

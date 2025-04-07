@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Customer Support Chatbot</title>
+  <script>
+    async function sendMessage() {
+      const userInput = document.getElementById("userInput").value;
+      const response = await fetch("/ask", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ message: userInput })
+      });
+      const data = await response.json();
+      document.getElementById("chat").innerHTML += `
+        <p><b>You:</b> ${userInput}</p>
+        <p><b>Bot:</b> ${data.answer}</p>
+      `;
+      document.getElementById("userInput").value = "";
+    }
+  </script>
+</head>
+<body>
+  <h2>Customer Support Chatbot</h2>
+  <div id="chat" style="height: 300px; overflow-y: scroll; border: 1px solid black; padding: 10px;"></div>
+  <input type="text" id="userInput" placeholder="Ask a question..." />
+  <button onclick="sendMessage()">Send</button>
+</body>
+</html>
